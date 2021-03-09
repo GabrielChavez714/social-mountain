@@ -40,8 +40,13 @@ In this step, we'll use `axios` to fetch `posts` from the API and render them on
 * Use `axios` and the API documentation to fetch `posts` in the `componentDidMount` method.
   * Set the `posts` array returned from the API onto `posts` on `state`.
 * Import the `Post` component.
-* Underneathe the `Compose` component, map over `posts` on `state` and render a `Post` component for each `post`.
+* Underneath  the `Compose` component, map over `posts` on `state` and render a `Post` component for each `post`.
   * Remember that React requires a unique key property when using a `map`.
+
+
+
+
+
 
 <details>
 
@@ -57,7 +62,10 @@ Now let's open `./src/components/App.js` and import `axios` into the component. 
 import axios from 'axios';
 ```
 
-Now that we have `axios` imported, we can go into the `componentDidMount` method and make a `GET` request to the API. Using the API documentation we can see that we need to make a `GET` request to `https://practiceapi.devmountain.com/api/posts`. The API documentation also explains that a `GET` request returns an array of post objects. We'll need to capture this returned array and set it onto `posts` on `App`'s `state`.
+Now that we have `axios` imported, we can go into the `componentDidMount` method and make a `GET` request to the API. Using the API documentation we can see that we need to make a `GET` request to `https://practiceapi.devmountain.com/api/posts`. 
+
+
+<!-- The API documentation also explains that a `GET` request returns an array of post objects. We'll need to capture this returned array and set it onto `posts` on `App`'s `state`. -->
 
 ```js
 componentDidMount() {
@@ -67,7 +75,12 @@ componentDidMount() {
 }
 ```
 
-Now when the `App` component mounts it will fetch the array of `posts`. The last thing we'll need to do is `map` over the `posts` and render them onto the `DOM`. We'll need to import the `Post` component into `./src/components/App.js`. Once it has been imported, we can go into the `render` method and render a `Post` component for every `post` in the `posts` array on `state`. Remember when using a `map` in the `render` method, the element needs a unique `key` property. In this case, we can use the `id` of the `post`.
+Now when the `App` component mounts it will fetch the array of `posts`.
+ The last thing we'll need to do is `map` over the `posts` and render them onto the `DOM`. 
+ We'll need to import the `Post` component into `./src/components/App.js`. 
+ Once it has been imported, we can go into the `render` method and render a `Post` component for every `post` in the `posts` array on `state`. 
+ Remember when using a `map` in the `render` method, the element needs a unique `key` property. 
+ In this case, we can use the `id` of the `post`.
 
 ```js
 render() {
@@ -172,6 +185,12 @@ export default App;
 
 <img src="https://github.com/DevMountain/react-3-afternoon/blob/solution/assets/2.png" />
 
+
+
+
+
+
+
 ## Step 2
 
 ### Summary
@@ -206,7 +225,8 @@ Let's begin by opening `./src/components/App.js`. In the `render` method, we'll 
 }
 ```
 
-Now that our `Post` component is receiving the `text` and `date`, we can `render` them in the `Post` component. Let's open `./src/components/Post/Post.js`. I'm going to destructure `text` and `date` off of `props` at the top of the `render` method for easier referencing.
+Now that our `Post` component is receiving the `text` and `date`, we can `render` them in the `Post` component. 
+Let's open `./src/components/Post/Post.js`. I'm going to destructure `text` and `date` off of `props` at the top of the `render` method for easier referencing.
 
 ```js
 const { text, date } = this.props;
@@ -297,6 +317,15 @@ render() {
 
 <img src="https://github.com/DevMountain/react-3-afternoon/blob/solution/assets/3.png" />
 
+
+
+
+
+
+
+
+
+
 ## Step 3
 
 ### Summary
@@ -318,7 +347,13 @@ In this step, we'll create the `updatePost` method to use `axios` to update a `p
 
 <br />
 
-Let's begin by opening `./src/components/App.js`. In the `updatePost` method, we'll need to use `axios` to make a `PUT` request to the API. Using the API documentation, we can see that when editing a post the API is expecting a `PUT` request at `https://practiceapi.devmountain.com/api/posts`. We can also see that the endpoint uses the request query to determine the `post` `id` and uses the request body to determine the `post` `text`. Because the `id` and `text` of the post will be different every time the method is called we should use an `id` and `text` parameter for the method.
+Let's begin by opening `./src/components/App.js`. In the `updatePost` method, we'll need to use `axios` to make a `PUT` request to the API.
+
+ Using the API documentation, we can see that when editing a post the API is expecting a `PUT` request at `https://practiceapi.devmountain.com/api/posts`.
+
+  We can also see that the endpoint uses the request query to determine the `post` `id` and uses the request body to determine the `post` `text`.
+
+   Because the `id` and `text` of the post will be different every time the method is called we should use an `id` and `text` parameter for the method.
 
 ```js
 updatePost( id, text ) {
@@ -433,6 +468,13 @@ export default App;
 
 </details>
 
+
+
+
+
+
+
+
 ## Step 4
 
 ### Summary
@@ -459,7 +501,17 @@ In this step, we'll make the `Edit` button functional by using the `updatePostFn
 
 <br />
 
-Let's begin by opening `./src/components/Post/Post.js`. In the `render` method, there is a `div` with the class of `Post__content` that either renders a `post`'s `text` or an `Edit` component. The `Edit` component is responsible for capturing a user's new text to assign to a `post`. In order for the `Edit` component to function, we'll need to pass the `updatePostFn` `prop` from `Post.js` as a `prop` into `Edit.js`. We'll also need to pass down the `post`'s `text` and `id` so they can be used as the arguments for the `updatePostFn`. You'll notice that a `prop` called `hideEdit` already exists, that method is responsible for hiding the `Edit` component after updating a `post`'s `text`.
+Let's begin by opening `./src/components/Post/Post.js`. 
+
+In the `render` method, there is a `div` with the class of `Post__content` that either renders a `post`'s `text` or an `Edit` component.
+
+ The `Edit` component is responsible for capturing a user's new text to assign to a `post`. 
+
+ In order for the `Edit` component to function, we'll need to pass the `updatePostFn` `prop` from `Post.js` as a `prop` into `Edit.js`.
+
+  We'll also need to pass down the `post`'s `text` and `id` so they can be used as the arguments for the `updatePostFn`.
+  
+   You'll notice that a `prop` called `hideEdit` already exists, that method is responsible for hiding the `Edit` component after updating a `post`'s `text`.
 
 ```js
 <div className="Post__content">
@@ -476,7 +528,17 @@ Let's begin by opening `./src/components/Post/Post.js`. In the `render` method, 
 </div>
 ```
 
-Now that we're passing down all the necessary `props` into the `Edit` component, let's open `./src/components/Post/Edit/Edit.js` and get the `Edit` button functional. We'll need to update the `updatePost` method. This method gets called when a user clicks on `update`. The component keeps track of the new text value on its `state`. Knowing this, we can call `updatePostFn` with `id` off of `props` and `text` off of `state`. After we call `updatePostFn` we should also call `hideEdit` off of `props` to hide the `Edit` component.
+Now that we're passing down all the necessary `props` into the `Edit` component, let's open `./src/components/Post/Edit/Edit.js` and get the `Edit` button functional.
+
+ We'll need to update the `updatePost` method.
+
+  This method gets called when a user clicks on `update`.
+
+   The component keeps track of the new text value on its `state`.
+
+    Knowing this, we can call `updatePostFn` with `id` off of `props` and `text` off of `state`. 
+
+    After we call `updatePostFn` we should also call `hideEdit` off of `props` to hide the `Edit` component.
 
 ```js
 updatePost() {
@@ -532,6 +594,11 @@ updatePost() {
 <br />
 
 <img src="https://github.com/DevMountain/react-3-afternoon/blob/solution/assets/4g.gif" />
+
+
+
+
+
 
 ## Step 5
 
